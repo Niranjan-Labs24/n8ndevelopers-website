@@ -34,6 +34,12 @@ export interface BlogPost {
         content: any; // Rich Text object
         featuredImage: Asset;
         tags?: string[];
+        faq?: Array<{
+            fields: {
+                question: string;
+                answer: string;
+            };
+        }>;
     };
 }
 
