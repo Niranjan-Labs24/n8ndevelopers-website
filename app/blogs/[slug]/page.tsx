@@ -9,6 +9,8 @@ import { ArrowLeft, ArrowRight, Instagram, Linkedin, Facebook } from 'lucide-rea
 import Image from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
+import BlogFAQ from '@/components/blog/BlogFAQ';
+
 
 export const revalidate = 3600;
 
@@ -103,6 +105,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     isEnabled
   );
 
+
   if (!post) notFound();
   
   const adjacentPosts = await contentfulService.getAdjacentPosts(post.fields.date, isEnabled);
@@ -190,8 +193,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   prose-a:text-[#FF7A59] prose-a:font-bold prose-a:no-underline hover:prose-a:underline
                   prose-img:rounded-xl prose-img:border-none prose-img:shadow-none
                 ">
-                  {documentToReactComponents(post.fields.content, richTextOptions)}
+                   {documentToReactComponents(post.fields.content, richTextOptions)}
                 </div>
+
+                {/* FAQ Section */}
+                {(post.fields.faq || (post.fields as any).faqItem) && (
+                  <BlogFAQ faqs={post.fields.faq || (post.fields as any).faqItem} />
+                )}
 
                 {/* Mobile View: Sidebar content moved here */}
                 <div className="flex flex-col gap-10 lg:hidden pt-12 border-t border-gray-100">

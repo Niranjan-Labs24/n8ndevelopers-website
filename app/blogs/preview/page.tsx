@@ -8,11 +8,6 @@ export default async function PreviewDashboard() {
   
   const { posts } = await contentfulService.getAllPosts(1, 10, undefined, true);
 
-  // Debug: Log the actual slugs from Contentful
-  console.log('Preview Dashboard - Posts found:', posts.length);
-  posts.forEach(post => {
-    console.log(`Post ID: ${post.sys.id}, Title: "${post.fields.title}", Slug: "${post.fields.slug}"`);
-  });
 
   return (
     <div className="container mx-auto px-4 py-12">
