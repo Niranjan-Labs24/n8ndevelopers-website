@@ -6,10 +6,12 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import "@/app/globals.css"
+import { PromotionPopup } from "@/components/PromotionPopup"
 import ChatbaseScript from "@/components/chatbase"
 import OfferBar from "@/components/OfferBar"
 import NavigationProgress from "@/components/NavigationProgress"
 import GlobalDotAccent from "@/components/GlobalDotAccent"
+import { Toaster } from "@/components/ui/sonner"
 import { Suspense } from "react"
 
 export const metadata: Metadata = {
@@ -46,6 +48,8 @@ export default function RootLayout({
           <Suspense fallback={null}>
             <NavigationProgress />
           </Suspense>
+          <PromotionPopup />
+          <Toaster />
           <GlobalDotAccent />
           <Header />
           {/* <OfferBar /> */}
