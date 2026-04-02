@@ -56,18 +56,18 @@ export function PromotionPopup() {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="max-w-[95vw] sm:max-w-[420px] md:max-w-[480px] lg:max-w-[520px] p-0 border-none bg-transparent shadow-none z-[9999] left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]"
+      <DialogContent className="max-w-[95vw] sm:max-w-[420px] md:max-w-[560px] lg:max-w-[640px] p-0 border-none bg-transparent shadow-none z-[9999] left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]"
         onPointerDownOutside={(e) => e.preventDefault()}
         onEscapeKeyDown={(e) => e.preventDefault()}
       >
         <DialogTitle className="sr-only">Special Offer</DialogTitle>
-        <div className="relative flex flex-col-reverse md:flex-row min-h-[290px] md:min-h-[320px] lg:min-h-[340px] w-full bg-white border border-black rounded-[36px] shadow-2xl overflow-hidden">
+        <div className="relative flex flex-col-reverse md:flex-row min-h-[290px] md:min-h-[380px] lg:min-h-[420px] w-full bg-white border border-black rounded-[36px] shadow-2xl overflow-hidden">
           
           {/* Mask to hide the black border at the bottom under the Testimonial section ON DESKTOP ONLY */}
           <div className="hidden md:block absolute bottom-0 left-0 w-[42%] h-[2px] bg-[#FFF8F6] z-30 rounded-bl-[36px]" />
 
           {/* Left Testimonial Card Section (Bottom on Mobile, Left on Desktop) */}
-          <div className="w-[calc(100%-24px)] mx-auto mb-3 md:mb-0 md:mx-0 md:w-[42%] bg-[#FFF8F6] p-3 md:px-5 md:pt-6 md:pb-4 flex flex-row md:flex-col items-center justify-start text-left md:text-center rounded-[36px] md:rounded-none z-20">
+          <div className="w-[calc(100%-24px)] mx-auto mb-3 md:mb-0 md:mx-0 md:w-[42%] bg-[#FFF8F6] p-3 md:px-7 md:pt-8 md:pb-6 flex flex-row md:flex-col items-center justify-start text-left md:text-center rounded-[36px] md:rounded-none z-20">
             <h3 className="hidden md:block text-[11px] lg:text-[12px] font-bold text-gray-900 mb-3 tracking-wider font-sans w-full text-center uppercase">Testimonial</h3>
             
             <div className="relative w-20 h-20 md:w-26 md:h-26 lg:w-32 lg:h-32 mr-3 md:mr-0 mb-0 md:mb-5 rounded-3xl overflow-hidden shadow-md flex-shrink-0 border-2 border-white/50">
