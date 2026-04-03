@@ -1,0 +1,53 @@
+﻿
+> my-v0-project@0.1.0 build
+> next build
+
+   Ôû▓ Next.js 15.5.7
+   - Environments: .env
+
+   Creating an optimized production build ...
+ Ô£ô Compiled successfully in 5.6s
+   Linting and checking validity of types ...
+node.exe : Failed to compile.
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" 
+"C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpeci 
+   fied: (Failed to compile.:String)   
+  [], RemoteException
+    + FullyQualifiedErrorId : NativeCo 
+   mmandError
+ 
+
+./components/ui/resizable.tsx:11:51
+Type error: Property 'PanelGroup' does 
+not exist on type 'typeof import("C:/Us
+ers/ayush/WorkProjects/n8ndevelopers-we
+bsite/node_modules/react-resizable-pane
+ls/dist/react-resizable-panels")'.
+
+[0m [90m  9 |[39m   
+className[33m,[39m
+ [90m 10 |[39m   [33m...[39mprops
+[31m[1m>[22m[39m[90m 11 |[39m 
+}[33m:[39m [33mReact[39m[33m.[39m
+[33mComponentProps[39m[33m<[39m[36
+mtypeof[39m [33mResizablePrimitive[3
+9m[33m.[39m[33mPanelGroup[39m[33m>
+[39m) [33m=>[39m (
+ [90m    |[39m                       
+                            
+[31m[1m^[22m[39m
+ [90m 12 |[39m   [33m<[39m[33mResi
+zablePrimitive[39m[33m.[39m[33mPane
+lGroup[39m
+ [90m 13 |[39m     
+className[33m=[39m{cn(
+ [90m 14 |[39m       [32m"flex 
+h-full w-full data-[panel-group-directi
+on=vertical]:flex-col"[39m[33m,[39m
+[0m
+Next.js build worker exited with code: 
+1 and signal: null
