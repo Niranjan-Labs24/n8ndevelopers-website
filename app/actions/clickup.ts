@@ -12,22 +12,22 @@ export async function submitToClickUp(formData: { name: string; email: string; b
   const url = `https://api.clickup.com/api/v2/list/${CLICKUP_LIST_ID}/task`;
 
   const taskData = {
-    name: formData.business, // Show Business Name as the main title
+    name: formData.business, 
     description: `Lead from Website Promotion Pop-up.`,
     status: "new lead",
     tags: ["lead", "coupon"],
     custom_fields: [
       {
-        id: "6532f642-a0d2-4663-9645-cfa15c4c8d83", // Contact Name column
+        id: "6532f642-a0d2-4663-9645-cfa15c4c8d83", 
         value: formData.name
       },
       {
-        id: "528e4265-7a98-4535-9be0-4894e5409d3d", // Email column
+        id: "528e4265-7a98-4535-9be0-4894e5409d3d", 
         value: formData.email
       },
       {
-        id: "bc416830-b0f3-4c53-b572-6a6ba76bad4a", // Lead Source column
-        value: "9227a702-eff6-411a-921f-79bad03982ae" // Internal ID for "website coupon"
+        id: "bc416830-b0f3-4c53-b572-6a6ba76bad4a",
+        value: "9227a702-eff6-411a-921f-79bad03982ae" 
       }
     ]
   };

@@ -16,7 +16,7 @@ const LandingPage: FC = () => {
             <div className="space-y-4 md:space-y-6">
               <h1 className="text-[28px] xs:text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-semibold tracking-[-0.03em] text-black leading-tight lg:leading-[63px]">
                 <span className="inline-block sm:whitespace-nowrap">Stop <span className="text-[#FF7A59]">wrestling workflows.</span></span><br className="hidden sm:block" />
-                Let a dedicated n8n<br className="hidden sm:block" />
+                Let a dedicated n8n <br className="hidden sm:block" />
                 team handle it.
               </h1>
               <p className="text-lg md:text-xl text-gray-500 max-w-xl leading-relaxed">
