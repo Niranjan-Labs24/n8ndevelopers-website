@@ -36,7 +36,7 @@ export const Header: FC = () => {
 
   return (
     <header className="border-b border-gray-100 bg-white sticky top-0 z-50">
-      <div className="w-full flex items-center justify-between px-6 lg:px-[5%] py-[12px] md:py-[16px]">
+      <div className="w-full flex items-center justify-between px-6 lg:px-[5%] py-[20px] md:py-[32px]">
         {/* Left: Desktop Logo OR Mobile Logo */}
         <div className="flex-1 flex items-center">
           {/* Desktop Logo */}

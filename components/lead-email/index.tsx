@@ -1,4 +1,4 @@
-export const welcomeEmailTemplate = () => {
+export const leadEmailTemplate = () => {
   return `
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="ltr" lang="en">
@@ -24,24 +24,22 @@ export const welcomeEmailTemplate = () => {
                         <span>Hey 👋,</span>
                     </p>
                     <p class="" style="margin:0;padding:0;font-size:1em;padding-top:0.5em;padding-bottom:0.5em;text-align:left">
-                        <span>Thanks for signing up!! We're excited to have you on board!
-                            🎉</span>
+                        <span>Thanks for claiming your offer! We're excited to connect with you. 🎉</span>
                     </p>
                     <p class="" style="margin:0;padding:0;font-size:1em;padding-top:0.5em;padding-bottom:0.5em;text-align:left">
-                        <span>As a welcome gift, you've unlocked a </span><span><strong>10-hour free block</strong></span><span> to use towards your first project with us.</span>
+                        <span>As promised, you've unlocked a </span><span><strong>$200 Coupon</strong></span><span> to use towards your pricing plan with us.</span>
                     </p>
                     <p class="" style="margin:0;padding:0;font-size:1em;padding-top:0.5em;padding-bottom:0.5em;text-align:left">
-                        <span>To claim it, just book a quick intro call with our team so we
-                            can understand your needs and get everything set up
+                        <span>To apply it, just book a quick intro call with our team so we
+                            can understand your business needs and get everything set up
                             smoothly.</span>
                     </p>
                     <p class="" style="margin:0;padding:0;font-size:1em;padding-top:0.5em;padding-bottom:0.5em;text-align:left">
                         <span>👉 </span><span><a href="https://cal.com/sasharay/30min" rel="noopener noreferrer nofollow" style="color:#0670DB;text-decoration-line:none;text-decoration:underline;font-weight:400" target="_blank"><strong>Book Your Call Now</strong></a></span>
                     </p>
                     <p class="" style="margin:0;padding:0;font-size:1em;padding-top:0.5em;padding-bottom:0.5em;text-align:left">
-                        <span>This is a limited-time offer, so don't miss the chance to
-                            kickstart your work with us — completely free for the first 10
-                            hours!</span>
+                        <span>This is a special promotional offer, so don't miss the chance to
+                            upgrade your workflow and save $200!</span>
                     </p>
                     <p class="" style="margin:0;padding:0;font-size:1em;padding-top:0.5em;padding-bottom:0.5em;text-align:left">
                         <span>If you have any questions before booking, just hit reply. We're

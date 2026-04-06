@@ -27,14 +27,13 @@ function FAQItem({
 
   return (
     <div
-      className={`h-full border border-gray-100 rounded-[2rem] transition-all duration-300 bg-white ${
+      className={`border border-gray-100 rounded-[2rem] transition-all duration-300 bg-white ${
         isOpen ? 'shadow-sm' : 'hover:shadow-md'
       }`}
     >
       <button
         onClick={() => onToggle(index)}
-        className="w-full h-full flex items-center justify-between px-8 py-7 text-left group"
-        style={isOpen ? { height: 'auto' } : {}}
+        className="w-full min-h-[100px] flex items-center justify-between px-8 py-7 text-left group"
       >
         <span className="text-base font-bold text-black pr-8 leading-snug group-hover:text-[#FF7A59] transition-colors">
           {faq.question}
@@ -74,17 +73,32 @@ export default function PricingFAQ() {
         Frequently asked questions
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-        {pricingFAQs.map((faq, index) => (
-          <div key={index}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+        {/* Left Column - Independent from Right */}
+        <div className="flex flex-col gap-6">
+          {pricingFAQs.filter((_, i) => i % 2 === 0).map((faq, index) => (
             <FAQItem
+              key={`left-${index}`}
               faq={faq}
-              index={index}
+              index={index * 2}
               openIndex={openIndex}
               onToggle={toggle}
             />
-          </div>
-        ))}
+          ))}
+        </div>
+
+        {/* Right Column - Independent from Left */}
+        <div className="flex flex-col gap-6">
+          {pricingFAQs.filter((_, i) => i % 2 !== 0).map((faq, index) => (
+            <FAQItem
+              key={`right-${index}`}
+              faq={faq}
+              index={index * 2 + 1}
+              openIndex={openIndex}
+              onToggle={toggle}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -60,10 +60,10 @@ const richTextOptions = {
     [BLOCKS.HEADING_1]: (node: any, children: any) => <h1 className="text-3xl font-extrabold mb-6 text-black">{children}</h1>,
     [BLOCKS.HEADING_2]: (node: any, children: any) => <h2 className="text-2xl font-bold mt-12 mb-6 text-black">{children}</h2>,
     [BLOCKS.HEADING_3]: (node: any, children: any) => <h3 className="text-xl font-bold mt-10 mb-5 text-black">{children}</h3>,
-    [BLOCKS.PARAGRAPH]: (node: any, children: any) => <p className="mb-8 font-gilroy font-medium text-[20px] leading-[34px] text-black text-justify">{children}</p>,
-    [BLOCKS.UL_LIST]: (node: any, children: any) => <ul className="list-disc pl-8 mb-8 space-y-4">{children}</ul>,
-    [BLOCKS.OL_LIST]: (node: any, children: any) => <ol className="list-decimal pl-8 mb-8 space-y-4">{children}</ol>,
-    [BLOCKS.LIST_ITEM]: (node: any, children: any) => <li className="font-gilroy font-medium text-[20px] leading-[34px] text-black text-justify">{children}</li>,
+    [BLOCKS.PARAGRAPH]: (node: any, children: any) => <p className="mb-4 font-gilroy font-medium text-[20px] leading-snug text-black text-justify">{children}</p>,
+    [BLOCKS.UL_LIST]: (node: any, children: any) => <ul className="list-disc pl-6 mb-4 space-y-1">{children}</ul>,
+    [BLOCKS.OL_LIST]: (node: any, children: any) => <ol className="list-decimal pl-6 mb-4 space-y-1">{children}</ol>,
+    [BLOCKS.LIST_ITEM]: (node: any, children: any) => <li className="font-gilroy font-medium text-[20px] leading-snug text-black text-justify [&>p]:mb-0">{children}</li>,
     [BLOCKS.QUOTE]: (node: any, children: any) => (
       <blockquote className="border-l-6 border-[#FF7A59] pl-8 py-4 my-8 bg-gray-50 italic text-xl text-gray-700 rounded-r-2xl">
         {children}
@@ -170,7 +170,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   src={`https:${featuredImage.fields.file.url}`}
                   alt={post.fields.title}
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   priority
                 />
               ) : (

@@ -48,7 +48,7 @@ export default function RootLayout({
           <Suspense fallback={null}>
             <NavigationProgress />
           </Suspense>
-          {/* <PromotionPopup /> */}
+          <PromotionPopup />
           <Toaster />
           <GlobalDotAccent />
           <Header />

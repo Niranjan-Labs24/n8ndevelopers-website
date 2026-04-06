@@ -6,16 +6,16 @@ const ACCESS_TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN;
 const PREVIEW_ACCESS_TOKEN = process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN;
 
 if (!SPACE_ID || !ACCESS_TOKEN) {
-    // console.warn('Contentful environment variables missing');
+    throw new Error('Contentful environment variables (SPACE_ID or ACCESS_TOKEN) are missing. Check your .env file.');
 }
 
 export const contentfulClient = createClient({
-    space: SPACE_ID || '',
-    accessToken: ACCESS_TOKEN || '',
+    space: SPACE_ID,
+    accessToken: ACCESS_TOKEN,
 });
 
 export const previewClient = createClient({
-    space: SPACE_ID || '',
+    space: SPACE_ID,
     accessToken: PREVIEW_ACCESS_TOKEN || ACCESS_TOKEN || '',
     host: 'preview.contentful.com',
 });
