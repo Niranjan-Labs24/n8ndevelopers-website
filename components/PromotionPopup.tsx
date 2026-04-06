@@ -43,14 +43,27 @@ export function PromotionPopup() {
     };
     
     const result = await submitToClickUp(data);
-    setIsSubmitting(false);
 
     if (result.success) {
+      try {
+        await fetch('/api/lead', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: data.email }),
+        });
+      } catch (error) {
+        console.error("Failed to send welcome email:", error);
+      }
+
       setIsOpen(false);
       toast.success("Thanks for submitting, we will connect with you soon");
     } else {
       toast.error(result.error || "Failed to submit. Please try again.");
     }
+
+    setIsSubmitting(false);
   };
 
   return (
