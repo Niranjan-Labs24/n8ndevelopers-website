@@ -36,7 +36,7 @@ export default function BlogCardImage({ src, alt, priority = false }: BlogCardIm
         alt={alt}
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        className="object-cover transition-opacity duration-300"
+        className="object-contain transition-opacity duration-300"
         onError={() => setImageError(true)}
         priority={priority}
       />
