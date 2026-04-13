@@ -1,13 +1,14 @@
 import type { MetadataRoute } from 'next'
 import { contentfulService } from '@/lib/contentful'
 
+export const revalidate = 300 // revalidate at most every 5 minutes (temporary for verification)
+
 const baseUrl = 'https://www.n8ndevelopers.com'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Fetch all published blog posts from Contentful
-  const { posts } = await contentfulService.getAllPosts(1, 100)
 
-  // Static pages
+  const { posts } = await contentfulService.getAllPosts(1, 500)
+
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
