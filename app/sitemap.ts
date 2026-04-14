@@ -1,13 +1,14 @@
 import type { MetadataRoute } from 'next'
 import { contentfulService } from '@/lib/contentful'
 
+export const revalidate = 3600
+
 const baseUrl = 'https://www.n8ndevelopers.com'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Fetch all published blog posts from Contentful
-  const { posts } = await contentfulService.getAllPosts(1, 100)
 
-  // Static pages
+  const { posts } = await contentfulService.getAllPosts(1, 500)
+
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
@@ -24,7 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: `${baseUrl}/blogs`,
       lastModified: new Date(),
-      changeFrequency: 'weekly',
+      changeFrequency: 'hourly',
       priority: 0.8,
     },
     {
@@ -45,7 +46,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const blogPages: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${baseUrl}/blogs/${post.fields.slug}`,
     lastModified: new Date(post.fields.date),
-    changeFrequency: 'monthly',
+    changeFrequency: 'hourly',
     priority: 0.6,
   }))
 
