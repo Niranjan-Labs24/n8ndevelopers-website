@@ -25,7 +25,7 @@ export function PromotionPopup() {
       const timer = setTimeout(() => {
         setIsOpen(true);
         sessionStorage.setItem('promo_popup_shown', 'true');
-      }, 1000); 
+      }, 30000); 
 
       return () => clearTimeout(timer);
     }
