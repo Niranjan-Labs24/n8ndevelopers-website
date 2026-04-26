@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { GoogleAnalytics } from "@next/third-parties/google"
 import Script from "next/script"
+import { Manrope, Space_Grotesk } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -13,6 +14,20 @@ import NavigationProgress from "@/components/NavigationProgress"
 import GlobalDotAccent from "@/components/GlobalDotAccent"
 import { Toaster } from "@/components/ui/sonner"
 import { Suspense } from "react"
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-manrope",
+  display: "swap",
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["500"],
+  variable: "--font-space-grotesk",
+  display: "swap",
+})
 
 export const metadata: Metadata = {
   title: "n8n Developers | Custom Workflow & Automation Solutions",
@@ -37,7 +52,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="antialiased font-sans">
+      <body className={`antialiased font-sans ${manrope.variable} ${spaceGrotesk.variable}`}>
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || ""} />
         <ThemeProvider
           attribute="class"
@@ -66,7 +81,7 @@ export default function RootLayout({
           src="https://consent.cookiebot.com/uc.js"
           data-cbid="875d1f20-cdec-45f8-b918-0665e17654b0"
           type="text/javascript"
-          async
+          strategy="lazyOnload"
         />
       </body>
     </html>

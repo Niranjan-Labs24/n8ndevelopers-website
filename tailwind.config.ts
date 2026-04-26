@@ -21,7 +21,7 @@ const config = {
     extend: {
       fontFamily: {
         sans: ["Gilroy"],
-        manrope: ["Manrope", "sans-serif"],
+        manrope: ["var(--font-manrope)", "sans-serif"],
       },
       screens: {
         xs: "375px",

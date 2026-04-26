@@ -48,6 +48,7 @@ export const Header: FC = () => {
                 width={140} 
                 height={50}
                 unoptimized
+                priority
                 className="object-contain h-[50px] w-auto" 
               />
             </Link>
@@ -62,6 +63,7 @@ export const Header: FC = () => {
                 width={120} 
                 height={40}
                 unoptimized
+                priority
                 className="object-contain h-8 w-auto" 
               />
             </Link>
@@ -118,7 +120,7 @@ export const Header: FC = () => {
           <div className="md:hidden">
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant='ghost' size='icon' className="p-0 h-auto w-auto hover:bg-transparent -mr-2 [&_svg]:size-10">
+                <Button aria-label="Open mobile menu" variant='ghost' size='icon' className="p-0 h-auto w-auto hover:bg-transparent -mr-2 [&_svg]:size-10">
                   <CustomMenuIcon />
                 </Button>
               </SheetTrigger>
