@@ -43,15 +43,16 @@ export const Footer: FC = () => {
 
           <div className="flex items-center gap-3 sm:gap-4 xl:gap-6 justify-end flex-1">
             {[
-              { Icon: Linkedin, href: "https://linkedin.com/company/n8n-developers" },
-              { Icon: SocialXIcon, href: "https://x.com/n8ndevelopers" },
-              { Icon: Instagram, href: "https://www.instagram.com/n8ndevelopers_offl?igsh=MWNzOXFrczV2Y2twdQ%3D%3D&utm_source=qr" },
-              { Icon: Facebook, href: "https://facebook.com" }
+              { label: "LinkedIn", Icon: Linkedin, href: "https://linkedin.com/company/n8n-developers" },
+              { label: "X (Twitter)", Icon: SocialXIcon, href: "https://x.com/n8ndevelopers" },
+              { label: "Instagram", Icon: Instagram, href: "https://www.instagram.com/n8ndevelopers_offl?igsh=MWNzOXFrczV2Y2twdQ%3D%3D&utm_source=qr" },
+              { label: "Facebook", Icon: Facebook, href: "https://facebook.com" }
             ].map((social, i) => (
               <Link 
                 key={i} 
                 href={social.href}
                 target="_blank"
+                aria-label={`Visit our ${social.label} page`}
                 className="w-[30px] h-[30px] xl:w-[36px] xl:h-[36px] 2xl:w-[40px] 2xl:h-[40px] border border-gray-100 rounded-[8px] flex items-center justify-center text-black hover:border-black transition-all transform hover:scale-105 shadow-sm bg-white"
               >
                 <social.Icon className="h-4 w-4 xl:h-5 xl:w-5" />

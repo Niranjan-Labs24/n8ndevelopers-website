@@ -48,6 +48,7 @@ const Cadlenly = () => {
               src={CADLENLY_URL}
               className="w-full h-full"
               title="Schedule a meeting with n8n developers"
+              loading="lazy"
             />
           </div>
         </div>
