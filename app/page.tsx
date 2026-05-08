@@ -1,9 +1,18 @@
+import type { Metadata } from "next"
 import type { FC } from "react"
 import { Check, Activity, Star } from "lucide-react"
 import Cadlenly from "./components/cadlenly"
 import Image from "next/image"
 import Link from "next/link"
 import { CADLENLY_URL } from "./constants"
+
+export const metadata: Metadata = {
+  title: 'n8n Developers | Expert Workflow Automation & Integration Services',
+  description: 'Hire certified n8n experts to design, build, and scale your automation pipeline. Production-ready workflows, seamless SaaS integrations, and professional consultation.',
+  alternates: {
+    canonical: '/',
+  },
+};
 
 const LandingPage: FC = () => {
   return (
@@ -76,6 +85,7 @@ const LandingPage: FC = () => {
                         alt="User avatar"
                         fill
                         className="object-cover"
+                        sizes="(max-width: 768px) 40px, 48px"
                       />
                     </div>
                   ))}

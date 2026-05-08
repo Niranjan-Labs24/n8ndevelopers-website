@@ -22,7 +22,7 @@ export default function BlogFilter({ currentTag }: BlogFilterProps) {
           <Link
             key={filter.value}
             href={href}
-            className={`text-lg font-bold transition-all whitespace-nowrap relative pb-3 ${
+            className={`text-lg font-bold transition-all whitespace-nowrap relative pb-4 pt-2 px-2 ${
               isActive 
                 ? 'text-black after:absolute after:bottom-0 after:left-0 after:right-1 after:h-[3px] after:bg-[#FF7A59] after:rounded-full' 
                 : 'text-gray-400 hover:text-gray-600'

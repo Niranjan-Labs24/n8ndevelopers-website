@@ -7,8 +7,12 @@ import PromotionBanner from "@/components/blog/PromotionBanner"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "About | n8n Developers",
+  title: "About N8N Developers | Hire n8n Experts & Consultants",
   description: "Learn about n8n Developers — a global network of n8n experts making workflow automation accessible to every business.",
+  keywords: "n8n developers, workflow automation experts, n8n consultants, hire n8n developers, n8n agency",
+  alternates: {
+    canonical: "/about",
+  },
 }
 
 const pillars = [

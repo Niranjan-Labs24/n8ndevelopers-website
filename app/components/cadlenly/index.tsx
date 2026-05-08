@@ -1,7 +1,20 @@
+'use client';
+
+import { useState, useEffect } from "react"
 import { Clock } from "lucide-react"
 import { CADLENLY_URL } from "@/app/constants"
 
 const Cadlenly = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Delay loading the iframe slightly to prioritize hero content
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="xl:col-span-1 w-full flex justify-center lg:justify-end">
       <div className="relative w-full max-w-[480px]" style={{ 
@@ -43,13 +56,20 @@ const Cadlenly = () => {
               Get all your questions answered by our experts.
             </p>
           </div>
-          <div className="flex-grow w-full h-full pt-4">
-            <iframe
-              src={CADLENLY_URL}
-              className="w-full h-full"
-              title="Schedule a meeting with n8n developers"
-              loading="lazy"
-            />
+          <div className="flex-grow w-full h-full pt-4 min-h-[500px] flex items-center justify-center">
+            {isLoaded ? (
+              <iframe
+                src={CADLENLY_URL}
+                className="w-full h-full border-none"
+                title="Schedule a meeting with n8n developers"
+                loading="lazy"
+              />
+            ) : (
+              <div className="flex flex-col items-center gap-4 text-gray-400">
+                <div className="w-8 h-8 border-4 border-[#FF7A59] border-t-transparent rounded-full animate-spin"></div>
+                <p className="text-sm font-medium">Loading booking widget...</p>
+              </div>
+            )}
           </div>
         </div>
       </div>

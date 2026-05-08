@@ -56,7 +56,7 @@ export default function PromotionBanner() {
             fill
             className="object-contain object-bottom"
             priority
-            unoptimized
+            sizes="(max-width: 1024px) 100vw, 500px"
           />
         </div>
       </div>

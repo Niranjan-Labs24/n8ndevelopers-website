@@ -1,8 +1,17 @@
+import type { Metadata } from "next"
 import type { FC } from "react"
 import { Check } from "lucide-react"
 import Image from "next/image"
 import FAQSection from "@/components/blog/FAQSection"
 import PromotionBanner from "@/components/blog/PromotionBanner"
+
+export const metadata: Metadata = {
+  title: "Join Our Network | n8n Developers",
+  description: "Join our global network of n8n experts and monetize your automation skills. Work on global projects and set your own hours.",
+  alternates: {
+    canonical: "/join-developer",
+  },
+}
 
 const JoinDeveloperPage: FC = () => {
   return (
@@ -51,7 +60,7 @@ const JoinDeveloperPage: FC = () => {
 
         {/* Join as Agency Link */}
         <div className="pt-4">
-          <a href="#" className="text-base md:text-lg text-black underline hover:no-underline">
+          <a href="mailto:sasha.ray@n8ndevelopers.com" className="text-base md:text-lg text-black underline hover:no-underline">
             Join as a agency
           </a>
         </div>
@@ -67,6 +76,7 @@ const JoinDeveloperPage: FC = () => {
             height={400}
             className="w-full h-auto rounded-lg"
             priority
+            sizes="(max-width: 1024px) 100vw, 600px"
           />
         </div>
 
