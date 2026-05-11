@@ -12,8 +12,8 @@ interface BlogCardImageProps {
 export default function BlogCardImage({ src, alt, priority = false }: BlogCardImageProps) {
   const [imageError, setImageError] = useState(false);
 
-  // Add Contentful Image API parameters for better optimization
-  const optimizedSrc = src ? `${src}?w=600&q=75&fm=webp` : null;
+  // Optimized Contentful Image API parameters: reduced width and quality for faster LCP
+  const optimizedSrc = src ? `${src}?w=500&q=65&fm=webp` : null;
 
   if (!optimizedSrc || imageError) {
     return (
@@ -36,9 +36,10 @@ export default function BlogCardImage({ src, alt, priority = false }: BlogCardIm
         alt={alt}
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        className="object-contain transition-opacity duration-300"
+        className="object-cover transition-opacity duration-300"
         onError={() => setImageError(true)}
         priority={priority}
+        fetchPriority={priority ? "high" : "auto"}
       />
     </div>
   );

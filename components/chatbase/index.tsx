@@ -2,6 +2,12 @@
 
 import { useEffect } from 'react';
 
+declare global {
+  interface Window {
+    chatbase?: any;
+  }
+}
+
 export default function ChatbaseScript() {
   useEffect(() => {
     if (
@@ -29,11 +35,18 @@ export default function ChatbaseScript() {
       document.body.appendChild(script);
     };
 
+    const delayedLoad = () => {
+      const timer = setTimeout(onLoad, 3000);
+      return () => clearTimeout(timer);
+    };
+
     if (document.readyState === 'complete') {
-      onLoad();
+      return delayedLoad();
     } else {
-      window.addEventListener('load', onLoad);
-      return () => window.removeEventListener('load', onLoad);
+      window.addEventListener('load', delayedLoad);
+      return () => {
+        window.removeEventListener('load', delayedLoad);
+      };
     }
   }, []);
 

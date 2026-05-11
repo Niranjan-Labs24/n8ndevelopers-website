@@ -7,8 +7,12 @@ import PromotionBanner from '@/components/blog/PromotionBanner';
 import BlogFilter from '@/components/blog/BlogFilter';
 
 export const metadata: Metadata = {
-  title: 'Blog | N8N Developers',
-  description: 'Latest insights, tutorials, and news from N8N Developers',
+  title: 'n8n Automation Blogs | Workflow & API Insights',
+  description: 'Read the latest insights on n8n automation, API integrations, and workflow development. Our experts share tutorials and news to help you scale your business with n8n.',
+  keywords: 'n8n blog, n8n automation, workflow automation, n8n tutorials, API integration',
+  alternates: {
+    canonical: '/blogs',
+  },
 };
 
 export const revalidate = 3600; 
@@ -27,7 +31,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   
   const { posts, totalPages } = await contentfulService.getAllPosts(
     currentPage, 
-    9, 
+    6, 
     currentTag
   );
 
@@ -42,7 +46,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-black leading-tight mb-6">
           Latest <span className="text-[#FF7A59]">blog</span> posts
         </h1>
-        <p className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto font-medium">
+        <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto font-medium">
           Insights, tutorials, and the latest news from the n8n developers team
         </p>
       </div>

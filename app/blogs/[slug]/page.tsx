@@ -28,6 +28,9 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   return {
     title: `${post.fields.title} | n8n developers`,
     description: post.fields.excerpt?.substring(0, 160),
+    alternates: {
+      canonical: `/blogs/${resolvedParams.slug}`,
+    },
   };
 }
 

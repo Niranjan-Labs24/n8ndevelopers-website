@@ -45,7 +45,7 @@ export default function BlogCard({ post, priority = false }: BlogCardProps) {
         
         {/* Excerpt */}
         <div 
-          className="text-gray-500 line-clamp-2 text-sm md:text-base leading-relaxed mb-6"
+          className="text-gray-500 line-clamp-2 text-base leading-relaxed mb-6"
         >
           {fields.excerpt}
         </div>
@@ -56,7 +56,8 @@ export default function BlogCard({ post, priority = false }: BlogCardProps) {
             href={`/blogs/${fields.slug}`}
             className="inline-flex items-center gap-2 text-base font-bold text-black border-none bg-transparent p-0 transition-all"
           >
-            <span className="border-b-2 border-black leading-tight">Read more</span>
+            <span className="border-b-2 border-black leading-tight">Read article</span>
+            <span className="sr-only"> about {fields.title}</span>
             <div className="relative transition-transform">
               <div className="absolute inset-0 bg-[#FF7A59] rounded-full translate-x-[1.5px] translate-y-[1.5px]" />
               <div className="relative bg-black rounded-full p-1.5">

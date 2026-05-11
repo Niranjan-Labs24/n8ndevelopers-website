@@ -61,6 +61,7 @@ export class ContentfulService {
                 skip: (page - 1) * perPage,
                 limit: perPage,
                 order: ['-fields.date'],
+                select: ['fields.title', 'fields.slug', 'fields.date', 'fields.author', 'fields.excerpt', 'fields.featuredImage', 'fields.tags'],
             };
 
             if (tag && tag !== 'All') {

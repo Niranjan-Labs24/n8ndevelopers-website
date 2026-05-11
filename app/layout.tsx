@@ -1,7 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { GoogleAnalytics } from "@next/third-parties/google"
 import Script from "next/script"
+import localFont from "next/font/local"
 import { Manrope, Space_Grotesk } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Header } from "@/components/header"
@@ -14,6 +14,33 @@ import NavigationProgress from "@/components/NavigationProgress"
 import GlobalDotAccent from "@/components/GlobalDotAccent"
 import { Toaster } from "@/components/ui/sonner"
 import { Suspense } from "react"
+
+const gilroy = localFont({
+  src: [
+    {
+      path: "../public/fonts/gilroy/Gilroy-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/gilroy/Gilroy-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/gilroy/Gilroy-SemiBold.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/gilroy/Gilroy-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-gilroy",
+  display: "swap",
+})
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -30,6 +57,7 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.n8ndevelopers.com"),
   title: "n8n Developers | Custom Workflow & Automation Solutions",
   description:
     "Hire expert n8n developers for workflow automation, integration, and custom solutions. Boost efficiency with tailored n8n services today.",
@@ -38,7 +66,7 @@ export const metadata: Metadata = {
     google: "dvHTOSJR4zdlxAgVgmxbghvshaT34Zee1oA0hg_3Qc0",
   },
   alternates: {
-    canonical: "https://www.n8ndevelopers.com/",
+    canonical: "/",
   },
   icons: {
     icon: "/n8n logo.png",
@@ -52,8 +80,23 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`antialiased font-sans ${manrope.variable} ${spaceGrotesk.variable}`}>
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || ""} />
+      <body className={`antialiased font-sans ${manrope.variable} ${spaceGrotesk.variable} ${gilroy.variable}`}>
+        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+              strategy="lazyOnload"
+            />
+            <Script id="google-analytics" strategy="lazyOnload">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
+              `}
+            </Script>
+          </>
+        )}
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

@@ -98,7 +98,7 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Paginat
             <Link
               key={pageNumber}
               href={getPageUrl(pageNumber)}
-              className={`min-w-[40px] h-[40px] flex items-center justify-center text-sm font-bold rounded-lg transition-all ${
+              className={`min-w-[44px] h-[44px] flex items-center justify-center text-base font-bold rounded-lg transition-all ${
                 isCurrentPage
                   ? 'text-[#FF7A59] bg-transparent'
                   : 'text-gray-400 hover:text-black hover:bg-gray-50'
