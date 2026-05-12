@@ -65,7 +65,7 @@ export class ContentfulService {
             };
 
             if (tag && tag !== 'All') {
-                query['fields.tags[in]'] = tag;
+                query['fields.tags[match]'] = tag;
             }
 
             const response = await client.getEntries<any>(query);
