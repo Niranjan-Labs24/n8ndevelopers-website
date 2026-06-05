@@ -4,7 +4,7 @@ import PromotionBanner from "@/components/blog/PromotionBanner"
 import PricingClient from "./components/PricingClient"
 
 const PricingPage: FC = () => {
-  const originalPrices = [50, 40, 30]
+  const originalPrices = [75, 60, 40]
 
   return (
     <div className="flex flex-col pt-4 md:pt-6">

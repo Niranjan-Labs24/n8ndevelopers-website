@@ -47,11 +47,11 @@ export interface FAQItem {
 export const pricingFAQs: FAQItem[] = [
   {
     question: "What is the minimum commitment for the Hourly model?",
-    answer: "The Hourly model is billed in 10-hour blocks, making it the lowest entry point at $500 total. It’s perfect if you have a one-off workflow or want to test our capabilities before committing to a larger package."
+    answer: "The Hourly model is billed in 10-hour blocks, making it the lowest entry point at $750 total. It’s perfect if you have a one-off workflow or want to test our capabilities before committing to a larger package."
   },
   {
     question: "How does the Volume Package save me money compared to the Hourly model?",
-    answer: "The Volume Package is billed at $40/hour in 50-hour blocks — that’s a $500 saving compared to the Hourly rate for the same hours. You also get a dedicated project manager and priority support, making it ideal for teams running multiple workflows or API integrations."
+    answer: "The Volume Package is billed at $60/hour in 50-hour blocks — that’s a $750 saving compared to the Hourly rate for the same hours. You also get a dedicated project manager and priority support, making it ideal for teams running multiple workflows or API integrations."
   },
   {
     question: "Which plan is right for me if I’m just starting with automation?",
