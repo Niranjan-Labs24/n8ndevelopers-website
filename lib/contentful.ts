@@ -1,6 +1,17 @@
 /// <reference types="node" />
 import { createClient, type Entry, type Asset } from 'contentful';
 
+// Suppress Node.js DEP0169 url.parse deprecation warning emitted by internal Contentful SDK / axios dependencies in Node 22+
+if (typeof process !== 'undefined' && typeof process.on === 'function') {
+    process.on('warning', (warning: any) => {
+        if (warning && (warning.code === 'DEP0169' || warning.name === 'DeprecationWarning')) {
+            if (warning.message && warning.message.includes('url.parse')) {
+                return;
+            }
+        }
+    });
+}
+
 const SPACE_ID = process.env.CONTENTFUL_SPACE_ID;
 const ACCESS_TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN;
 const PREVIEW_ACCESS_TOKEN = process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN;
@@ -43,6 +54,18 @@ export interface BlogPost {
     };
 }
 
+function normalizeSlug(s: string): string {
+    if (!s) return '';
+    try {
+        s = decodeURIComponent(s);
+    } catch (e) {}
+    return s
+        .toLowerCase()
+        .replace(/[\u2014\u2013]/g, '-')
+        .replace(/[^a-z0-9-]/g, '')
+        .replace(/-+/g, '-')
+        .replace(/^-+|-+$/g, '');
+}
 
 export class ContentfulService {
     private getClient(preview = false) {
@@ -91,6 +114,7 @@ export class ContentfulService {
     async getPostBySlug(slug: string, preview = false): Promise<BlogPost | null> {
         try {
             const client = this.getClient(preview);
+            // 1. Try exact slug match first
             const response = await client.getEntries<any>({
                 content_type: 'blogPost',
                 'fields.slug': slug,
@@ -101,6 +125,31 @@ export class ContentfulService {
             if (response.items && response.items.length > 0) {
                 return response.items[0] as unknown as BlogPost;
             }
+
+            // 2. Fallback: Normalized slug match (handling special chars, em-dashes, encodings)
+            const targetNormalized = normalizeSlug(slug);
+            if (targetNormalized) {
+                const allEntries = await client.getEntries<any>({
+                    content_type: 'blogPost',
+                    limit: 100,
+                    select: ['fields.slug'],
+                });
+                const match = allEntries.items.find((item: any) => 
+                    normalizeSlug(item.fields?.slug) === targetNormalized
+                );
+                if (match?.fields?.slug) {
+                    const matchedResponse = await client.getEntries<any>({
+                        content_type: 'blogPost',
+                        'fields.slug': String(match.fields.slug),
+                        limit: 1,
+                        include: 10,
+                    });
+                    if (matchedResponse.items && matchedResponse.items.length > 0) {
+                        return matchedResponse.items[0] as unknown as BlogPost;
+                    }
+                }
+            }
+
             return null;
         } catch (error) {
             console.error(`Error fetching Contentful post with slug ${slug}:`, error);

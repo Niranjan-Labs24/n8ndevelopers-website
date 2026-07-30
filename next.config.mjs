@@ -1,3 +1,11 @@
+if (typeof process !== 'undefined' && typeof process.on === 'function') {
+  process.on('warning', (warning) => {
+    if (warning && (warning.code === 'DEP0169' || (warning.message && warning.message.includes('url.parse')))) {
+      return;
+    }
+  });
+}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 
@@ -52,6 +60,40 @@ const securityHeaders = [
 
 export default {
   ...nextConfig,
+  async redirects() {
+    return [
+      {
+        source: '/blog',
+        destination: '/blogs',
+        permanent: true,
+      },
+      {
+        source: '/blog/:path*',
+        destination: '/blogs/:path*',
+        permanent: true,
+      },
+      {
+        source: '/post/:path*',
+        destination: '/blogs/:path*',
+        permanent: true,
+      },
+      {
+        source: '/posts/:path*',
+        destination: '/blogs/:path*',
+        permanent: true,
+      },
+      {
+        source: '/article/:path*',
+        destination: '/blogs/:path*',
+        permanent: true,
+      },
+      {
+        source: '/articles/:path*',
+        destination: '/blogs/:path*',
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
