@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import { contentfulService } from '@/lib/contentful';
 import { formatDate } from 'date-fns';
@@ -10,7 +10,6 @@ import Image from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
 import BlogFAQ from '@/components/blog/BlogFAQ';
-
 
 export const revalidate = 3600;
 
@@ -29,7 +28,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     title: `${post.fields.title} | n8n developers`,
     description: post.fields.excerpt?.substring(0, 160),
     alternates: {
-      canonical: `/blogs/${resolvedParams.slug}`,
+      canonical: `/blogs/${post.fields.slug}`,
     },
   };
 }
@@ -108,8 +107,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     isEnabled
   );
 
-
   if (!post) notFound();
+
+  if (post.fields.slug && post.fields.slug !== resolvedParams.slug) {
+    redirect(`/blogs/${post.fields.slug}`);
+  }
   
   const adjacentPosts = await contentfulService.getAdjacentPosts(post.fields.date, isEnabled);
 
