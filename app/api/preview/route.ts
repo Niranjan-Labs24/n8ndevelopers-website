@@ -1,14 +1,23 @@
 import { draftMode } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { contentfulService } from '@/lib/contentful';
+import { contentfulService, isContentfulConfigured } from '@/lib/contentful';
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const secret = searchParams.get('secret');
     const slug = searchParams.get('slug');
 
+    // An unconfigured preview must not crash route import or enable draft mode.
+    const previewSecret = process.env.CONTENTFUL_PREVIEW_SECRET;
+    if (!previewSecret || !isContentfulConfigured(true)) {
+        return new Response('Blog preview is not configured.', {
+            status: 503,
+            headers: { 'Cache-Control': 'no-store' },
+        });
+    }
+
     // 1. Check the secret
-    if (secret !== process.env.CONTENTFUL_PREVIEW_SECRET) {
+    if (secret !== previewSecret) {
         return new Response('Invalid token', { status: 401 });
     }
 

@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { createClient, type Entry, type Asset } from 'contentful';
+import { createClient, type Asset } from 'contentful';
 
 // Suppress Node.js DEP0169 url.parse deprecation warning emitted by internal Contentful SDK / axios dependencies in Node 22+
 if (typeof process !== 'undefined' && typeof process.on === 'function') {
@@ -12,24 +12,32 @@ if (typeof process !== 'undefined' && typeof process.on === 'function') {
     });
 }
 
-const SPACE_ID = process.env.CONTENTFUL_SPACE_ID;
-const ACCESS_TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN;
-const PREVIEW_ACCESS_TOKEN = process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN;
-
-if (!SPACE_ID || !ACCESS_TOKEN) {
-    throw new Error('Contentful environment variables (SPACE_ID or ACCESS_TOKEN) are missing. Check your .env file.');
+export function isContentfulConfigured(preview = false): boolean {
+    const token = preview
+        ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN || process.env.CONTENTFUL_ACCESS_TOKEN
+        : process.env.CONTENTFUL_ACCESS_TOKEN;
+    return Boolean(process.env.CONTENTFUL_SPACE_ID && token);
 }
 
-export const contentfulClient = createClient({
-    space: SPACE_ID,
-    accessToken: ACCESS_TOKEN,
-});
+type ContentfulClient = ReturnType<typeof createClient>;
+let contentfulClient: ContentfulClient | undefined;
+let previewClient: ContentfulClient | undefined;
 
-export const previewClient = createClient({
-    space: SPACE_ID,
-    accessToken: PREVIEW_ACCESS_TOKEN || ACCESS_TOKEN || '',
-    host: 'preview.contentful.com',
-});
+// Route modules are imported during `next build`. Initialize the CMS only when
+// content is requested so an optional integration cannot prevent deployment.
+function getContentfulClient(preview: boolean): ContentfulClient {
+    const space = process.env.CONTENTFUL_SPACE_ID;
+    const accessToken = preview
+        ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN || process.env.CONTENTFUL_ACCESS_TOKEN
+        : process.env.CONTENTFUL_ACCESS_TOKEN;
+    if (!space || !accessToken) {
+        throw new Error('Contentful is not configured. Set CONTENTFUL_SPACE_ID and the appropriate Contentful access token to load blog content.');
+    }
+    if (preview) {
+        return previewClient ??= createClient({ space, accessToken, host: 'preview.contentful.com' });
+    }
+    return contentfulClient ??= createClient({ space, accessToken });
+}
 
 export interface BlogPost {
     sys: {
@@ -69,7 +77,7 @@ function normalizeSlug(s: string): string {
 
 export class ContentfulService {
     private getClient(preview = false) {
-        return preview ? previewClient : contentfulClient;
+        return getContentfulClient(preview);
     }
 
     async getAllPosts(page = 1, perPage = 10, tag?: string, preview = false): Promise<{

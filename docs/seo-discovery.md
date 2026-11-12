@@ -1,6 +1,6 @@
 # Search and AI discovery
 
-The site provides unique metadata, canonical URLs and structured data on the redesigned public pages. The existing blog source and CMS integration remain unchanged.
+The site provides unique metadata, canonical URLs and structured data on the redesigned public pages. The existing blog pages and content remain unchanged. CMS clients initialize on demand, so missing CMS configuration does not block marketing builds.
 
 ## Crawler endpoints
 

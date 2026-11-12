@@ -8,7 +8,7 @@ Twenty marketing pages share the new cream/orange visual system, local fonts, su
 
 `content/site-pages.json` contains versioned copy, markup, page-specific styles and structured data extracted from the supplied reference. `components/design/page.tsx` renders this trusted content on the server, with scoped React interaction handlers. It does not accept runtime HTML from visitors. Shared components and all App Router routes are TypeScript/TSX. `styles/design` is scoped to `.revamp-site`.
 
-The existing blog pages and `lib/contentful.ts` are unchanged. Marketing navigation links to the existing https://www.n8ndevelopers.com/blogs. Local blog routes retain the original header, footer, promotions and theme through `components/legacy` and `SiteShell`; the join-developer page also retains its existing shell.
+The existing blog pages, content and design are unchanged. Contentful clients initialize lazily when content is requested, so missing CMS configuration does not prevent the marketing site from building. Marketing navigation links to the existing https://www.n8ndevelopers.com/blogs. Local blog routes retain the original header, footer, promotions and theme through `components/legacy` and `SiteShell`; the join-developer page also retains its existing shell.
 
 ## Review behavior
 
@@ -21,10 +21,10 @@ The existing blog pages and `lib/contentful.ts` are unchanged. Marketing navigat
 
 ## Validation
 
-Deployment uses pnpm. Reproduce its dependency graph with `pnpm install --frozen-lockfile`, then run `pnpm exec tsc --noEmit --incremental false` and `pnpm run build`. For local development, use `pnpm run dev -- --hostname 0.0.0.0`. npm remains supported through `npm ci`.
+Deployment uses pnpm. Reproduce its dependency graph with `pnpm install --frozen-lockfile`, then run `pnpm exec tsc --noEmit --incremental false` and `pnpm run build`. For local development, use `pnpm run dev --hostname 0.0.0.0`. npm remains supported through `npm ci`.
 
 `react-resizable-panels` is pinned to 3.0.3 in the manifest and both lockfiles. Its wrappers use the v3 `PanelGroup` / `PanelResizeHandle` API; a check against a different npm resolution does not verify the deployment graph.
 
-The marketing routes were checked at desktop and 390px mobile widths, including metadata, internal links, FAQs, navigation, filters, the booking embed integration and fallback, and form validation. Type checking: `npx --no-install tsc --noEmit --incremental false`.
+The marketing routes were checked at desktop and 390px mobile widths, including metadata, internal links, FAQs, navigation, filters, the booking embed integration and fallback, and form validation. Type checking: `npx --no-install tsc --noEmit --incremental false`. CMS regression checks: `node --test scripts/test-contentful.mjs`.
 
-A full production build also loads the existing blog module. The unchanged CMS module requires real `CONTENTFUL_SPACE_ID` and `CONTENTFUL_ACCESS_TOKEN` settings; do not use invented values to bypass this requirement. Those credentials are absent in the review environment. No live form was submitted during validation.
+A production build can complete without CMS credentials. To load the existing blog posts, configure real `CONTENTFUL_SPACE_ID` and `CONTENTFUL_ACCESS_TOKEN` values in the hosting environment; do not invent placeholder values. The existing service fallbacks handle missing configuration without changing blog UI or supplying fabricated posts. The preview API returns an uncached HTTP 503 when CMS configuration or `CONTENTFUL_PREVIEW_SECRET` is missing, and retains secret validation and draft-mode behavior when configured. `CONTENTFUL_PREVIEW_ACCESS_TOKEN` can be supplied for draft content; the existing delivery-token fallback is retained. No live form was submitted during validation.
