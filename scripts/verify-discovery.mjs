@@ -29,8 +29,8 @@ for (const [route, page] of Object.entries(pages)) {
   assert(graph.some(node => node['@id'] === `https://www.n8ndevelopers.com${route}#webpage`), route)
   assert.equal(document.querySelectorAll('h1').length, 1, route)
   if (route === '/') {
-    assert(document.querySelector('#book .bk-embedded'), 'booking rendered in source design section')
-    assert.equal(document.querySelector('#days, #slots, #confirm'), null, 'no sample availability controls')
+    assert(document.querySelector('#book .bk-original'), 'booking rendered in source design section')
+    assert(document.querySelector('#book .bk-cal .days') && document.querySelector('#book .bk-time .slots'), 'original calendar and time columns')
     assert(document.querySelector('#book a[href="https://cal.com/sasharay/30min"]'), 'same Cal booking link')
   }
 }

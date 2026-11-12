@@ -14,7 +14,7 @@ The existing blog pages, content and design are unchanged. Contentful clients in
 
 - Responsive navigation includes an industry dropdown and an accessible mobile menu.
 - FAQs, lifecycle selection, service filters, backlog filters and section navigation are interactive.
-- The booking card embeds the existing Cal.com scheduler using its official React SDK. Cal.com supplies live availability, timezone selection and confirmation; the sample calendar/time-slot controls were removed. The original direct booking link remains available if the embed cannot load.
+- The booking card matches the supplied three-column HTML: cream process-review panel, month calendar and time-selection panel. Its native controls collect a clearly labelled date/time preference; they do not claim live availability or a confirmed booking. Continuing opens the same Cal.com scheduler inside a modal using the official React SDK, prefilled with the selected date and local timezone, with the preferred time shown above it. Cal.com supplies live availability and confirmation. Users can also open the scheduler without a preference, or follow the original direct link if the embed cannot load.
 - Contact and partner forms validate fields and open an email draft to the existing published contact, sasha.ray@n8ndevelopers.com. They do not claim that a message was sent. No new mail or CRM delivery endpoint was added.
 - The reference's video upload/editor controls were replaced with a process overview because no explainer-video asset was supplied.
 - Source photography/client logos remain referenced. When unavailable, a local branded illustration or client-name wordmark renders instead. Fonts, supplied artwork, technology logos and flags are local, with licenses retained.
