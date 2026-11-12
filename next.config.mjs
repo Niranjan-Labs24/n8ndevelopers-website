@@ -101,6 +101,10 @@ export default {
         source: '/(.*)',
         headers: securityHeaders,
       },
+      ...['/api/:path*', '/blogs/admin', '/blogs/preview'].map((source) => ({
+        source,
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' }],
+      })),
     ]
   },
 }

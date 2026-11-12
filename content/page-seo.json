@@ -1,0 +1,183 @@
+{
+  "/": {
+    "description": "Embed n8n engineers in your business to automate workflows, build AI agents and keep processes running. Start with one process and a 30-minute review.",
+    "keywords": [
+      "n8n developers",
+      "forward deployed engineers",
+      "workflow automation",
+      "AI agents",
+      "n8n consulting"
+    ]
+  },
+  "/about": {
+    "description": "Meet n8n Developers, the automation team within Labs 24. Learn how our engineers embed with your business, build workflows and own the work after launch.",
+    "keywords": [
+      "n8n Developers team",
+      "Labs 24",
+      "automation engineers",
+      "embedded engineering"
+    ]
+  },
+  "/compare": {
+    "description": "Compare forward deployed engineers, agencies and freelancers, explore engineering roles, and weigh n8n against Zapier and Make for your business process.",
+    "keywords": [
+      "automation comparisons",
+      "forward deployed engineer comparison",
+      "n8n vs Zapier vs Make",
+      "automation agency"
+    ]
+  },
+  "/contact": {
+    "description": "Tell n8n Developers about one process you want to automate. Book a 30-minute process review or contact our team about services, scope and partnerships.",
+    "keywords": [
+      "contact n8n Developers",
+      "automation process review",
+      "n8n consultation",
+      "book automation call"
+    ]
+  },
+  "/customer-stories": {
+    "description": "Explore n8n automation case studies in finance, operations and support. See the process, the workflow built, the outcomes and the ownership after launch.",
+    "keywords": [
+      "n8n case studies",
+      "automation customer stories",
+      "finance automation",
+      "operations automation"
+    ]
+  },
+  "/compare/forward-deployed-engineer-vs-agency-vs-freelancer": {
+    "description": "Compare forward deployed engineers, agencies and freelancers by ownership, collaboration and delivery. Find the right automation partner for your process.",
+    "keywords": [
+      "forward deployed engineer vs agency",
+      "agency vs freelancer",
+      "automation delivery models",
+      "embedded automation engineer"
+    ]
+  },
+  "/compare/forward-deployed-engineer-vs-solutions-engineer": {
+    "description": "Learn how forward deployed engineers differ from solutions engineers, software engineers and consultants in customer ownership, daily work and delivery.",
+    "keywords": [
+      "forward deployed engineer vs solutions engineer",
+      "engineering roles",
+      "embedded engineer",
+      "solutions engineering"
+    ]
+  },
+  "/forward-deployed-engineers": {
+    "description": "Learn what a forward deployed engineer does, how they work inside your business and how n8n Developers builds, operates and improves your automation.",
+    "keywords": [
+      "what is a forward deployed engineer",
+      "forward deployed engineering",
+      "embedded n8n engineer",
+      "automation ownership"
+    ]
+  },
+  "/compare/n8n-vs-zapier-vs-make": {
+    "description": "Compare n8n, Zapier and Make for workflow control, hosting, integrations and ongoing ownership. Choose an automation platform that fits your process.",
+    "keywords": [
+      "n8n vs Zapier vs Make",
+      "automation platform comparison",
+      "self-hosted automation",
+      "workflow platforms"
+    ]
+  },
+  "/partners": {
+    "description": "Offer n8n automation through white-label, co-branded or referral partnerships. Keep your agency’s client relationship while our engineers build and operate.",
+    "keywords": [
+      "n8n partner program",
+      "white-label automation",
+      "agency automation partner",
+      "automation referrals"
+    ]
+  },
+  "/pricing": {
+    "description": "Explore n8n automation engagements starting at $1,500. Compare single workflows, connected systems and ongoing support, then get a quote for your process.",
+    "keywords": [
+      "n8n automation pricing",
+      "forward deployed engineer pricing",
+      "workflow automation cost",
+      "n8n support plans"
+    ]
+  },
+  "/services": {
+    "description": "Explore n8n automation services: workflow builds, AI agents, process discovery, Zapier and Make migrations, monitoring and support with a named owner.",
+    "keywords": [
+      "n8n development services",
+      "AI workflow automation",
+      "Zapier to n8n migration",
+      "n8n monitoring and support"
+    ]
+  },
+  "/use-cases/construction": {
+    "description": "Automate construction paperwork, approvals and site reporting with embedded n8n engineers. Connect existing tools and keep workflows owned after launch.",
+    "keywords": [
+      "construction automation",
+      "construction workflow automation",
+      "site reporting automation",
+      "n8n construction"
+    ]
+  },
+  "/use-cases/ecommerce": {
+    "description": "Automate e-commerce orders, inventory and customer operations with embedded n8n engineers. Connect your store’s tools and keep workflows running after launch.",
+    "keywords": [
+      "ecommerce automation",
+      "order workflow automation",
+      "inventory automation",
+      "n8n ecommerce"
+    ]
+  },
+  "/use-cases/finance": {
+    "description": "Automate invoices, approvals and reconciliation with embedded n8n engineers. Connect your finance tools with human checkpoints and ongoing workflow ownership.",
+    "keywords": [
+      "finance automation",
+      "invoice automation",
+      "reconciliation workflows",
+      "n8n finance"
+    ]
+  },
+  "/use-cases/healthcare": {
+    "description": "Automate patient intake, reminders and billing hand-offs with n8n engineers. Keep human review in the process and ownership of healthcare admin workflows.",
+    "keywords": [
+      "healthcare workflow automation",
+      "patient intake automation",
+      "appointment reminder workflows",
+      "n8n healthcare"
+    ]
+  },
+  "/use-cases/legal": {
+    "description": "Automate law firm intake, document routing and billing steps with embedded n8n engineers. Keep your existing tools, human checkpoints and ongoing ownership.",
+    "keywords": [
+      "legal workflow automation",
+      "law firm automation",
+      "legal intake workflows",
+      "n8n legal"
+    ]
+  },
+  "/use-cases/real-estate": {
+    "description": "Automate real estate lead follow-up, document workflows and team hand-offs with embedded n8n engineers. Connect existing tools and maintain workflow ownership.",
+    "keywords": [
+      "real estate automation",
+      "lead follow-up automation",
+      "real estate workflows",
+      "n8n real estate"
+    ]
+  },
+  "/use-cases/saas": {
+    "description": "Automate SaaS customer onboarding, provisioning and support workflows with embedded n8n engineers. Connect your existing tools and keep improving after launch.",
+    "keywords": [
+      "SaaS workflow automation",
+      "customer onboarding automation",
+      "provisioning workflows",
+      "n8n SaaS"
+    ]
+  },
+  "/use-cases": {
+    "description": "Explore n8n automation for healthcare, e-commerce, finance, construction, real estate, legal and SaaS. Find workflows an embedded engineer can build and own.",
+    "keywords": [
+      "n8n automation use cases",
+      "industry workflow automation",
+      "business process automation",
+      "embedded engineers"
+    ]
+  }
+}

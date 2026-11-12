@@ -1,0 +1,33 @@
+/* Integration details: accessible navigation, local typography and public interactions. */
+.revamp-site{--f:var(--font-manrope),"Manrope",system-ui,sans-serif;--mono:var(--font-jetbrains),"JetBrains Mono",ui-monospace,monospace;--font-gilroy:var(--font-manrope)}
+.revamp-site [hidden]{display:none!important}
+.revamp-site{font-family:var(--f)}
+.revamp-site button,.revamp-site input,.revamp-site select,.revamp-site textarea{font-family:inherit}
+.revamp-site a,.revamp-site button,.revamp-site input,.revamp-site select,.revamp-site textarea,.revamp-site [tabindex]{-webkit-tap-highlight-color:transparent}
+.revamp-site :focus-visible{outline:2px solid var(--o-d);outline-offset:4px}
+.revamp-site .skip-link{position:fixed;top:8px;left:16px;transform:translateY(-160%);z-index:1000;padding:12px 20px;background:var(--ink);color:#fff;border-radius:4px}.revamp-site .skip-link:focus{transform:translateY(0);color:#fff}
+.revamp-site .nav a[aria-current=page]{color:var(--o-ink)}
+.revamp-site .mobile-toggle{display:none;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--line);background:var(--card);border-radius:4px;cursor:pointer;font-size:26px;flex-shrink:0}
+.revamp-site .mobile-navigation{display:none}
+.revamp-site .form-status,.revamp-site .booking-note{font-size:12px;line-height:1.6;color:var(--ink-2)}.revamp-site .form-status{margin-top:14px;max-width:50ch}.revamp-site .booking-note{margin-top:10px}
+.revamp-site #loop .ph{cursor:pointer}
+.revamp-site .design-photo{position:relative;overflow:hidden;background:var(--bg-2);min-height:200px;width:100%}
+.revamp-site .design-photo>img{width:100%;height:100%;object-fit:cover;display:block}.revamp-site .design-photo figcaption{position:absolute;bottom:8px;right:8px;left:8px;font-size:10px;line-height:1.4;text-align:right}.revamp-site .design-photo figcaption a{background:rgba(253,252,248,.88);padding:3px 6px;border-radius:3px;color:var(--ink-2)}
+.revamp-site .process-preview{border:1px solid var(--line);border-radius:var(--r-lg);padding:32px;background:linear-gradient(rgba(255,255,255,.95),rgba(255,255,255,.95)),url('/assets/backgrounds/n8n-workflow.svg') center/cover no-repeat;overflow:hidden;min-height:340px;display:flex;flex-direction:column;justify-content:space-between;gap:40px;box-shadow:var(--sh)}
+.revamp-site .process-preview-top,.revamp-site .process-preview-bottom{display:flex;align-items:center;justify-content:space-between;gap:24px}.revamp-site .process-status{font:500 11px var(--mono);background:var(--bg-2);padding:7px 10px;border:1px solid var(--line);border-radius:4px}.revamp-site .process-diagram{display:flex;align-items:center;justify-content:center;gap:clamp(10px,4vw,60px)}.revamp-site .process-diagram img{width:clamp(52px,8vw,100px);height:auto;transform:rotate(-4deg)}.revamp-site .process-diagram img:nth-of-type(2n){transform:rotate(4deg)}.revamp-site .process-diagram i{font-style:normal;color:var(--ink-3);font-size:24px}.revamp-site .process-preview h3{font-size:22px;font-weight:800;margin-bottom:6px}.revamp-site .process-preview p{font-size:14px;color:var(--ink-2)}
+@media(max-width:1060px){.revamp-site .mobile-toggle{display:flex}.revamp-site .mobile-navigation{display:flex;flex-direction:column;gap:2px;padding:12px 24px 24px;border-top:1px solid var(--line);max-height:calc(100dvh - 130px);overflow:auto;background:var(--bg)}.revamp-site .mobile-navigation>a,.revamp-site .mobile-navigation summary{padding:12px;font-size:15px;font-weight:700;border-radius:4px;cursor:pointer}.revamp-site .mobile-navigation a:hover{background:var(--bg-2)}.revamp-site .mobile-navigation details a{display:block;padding:10px 24px;font-size:14px}.revamp-site .mobile-navigation details{border-block:1px solid var(--line);margin:6px 0}.revamp-site .nav .wrap{gap:12px}}
+@media(min-width:1061px){.revamp-site .mobile-navigation{display:none}}
+@media(max-width:600px){.revamp-site .nav .acts .btn{font-size:12px;padding:11px 13px}.revamp-site .nav .wrap{height:70px}.revamp-site .nav .logo img{height:34px}.revamp-site .process-preview{padding:22px;min-height:360px;gap:36px}.revamp-site .process-preview-top,.revamp-site .process-preview-bottom{align-items:flex-start;flex-direction:column;gap:16px}.revamp-site .process-diagram{gap:10px}.revamp-site .process-diagram img{width:52px}.revamp-site .process-diagram i{font-size:18px}.revamp-site .process-preview h3{font-size:20px}.revamp-site .process-status{font-size:10px}}
+@media(prefers-reduced-motion:reduce){html:has(.revamp-site){scroll-behavior:auto}.revamp-site *,.revamp-site *::before,.revamp-site *::after{transition:none!important;animation:none!important}}
+.revamp-site .client-wordmark{font-size:24px;font-weight:800;letter-spacing:-.04em;color:var(--ink)}
+.revamp-site .process-preview-bottom{min-width:0}.revamp-site .process-preview-bottom .btn{white-space:normal;line-height:1.4;text-align:center}
+/* Keep the source booking card while Cal owns the live calendar and time slots. */
+.revamp-site .bk.bk-embedded{grid-template-columns:minmax(260px,.9fr) minmax(0,2fr)}
+.revamp-site .booking-calendar{min-width:0;background:var(--card);padding:20px 12px 12px;text-align:left;min-height:650px}
+.revamp-site .booking-status{font-size:12px;line-height:1.6;color:var(--ink-2);padding:10px 14px;margin:0 4px 12px;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-sm)}
+.revamp-site .booking-status a{font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.revamp-site .booking-status-ready{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);padding:0;border:0;margin:0}
+@media(max-width:980px){.revamp-site .bk.bk-embedded{grid-template-columns:minmax(0,1fr)}.revamp-site .bk.bk-embedded .bk-info{grid-column:auto}.revamp-site .booking-calendar{padding:16px 4px 4px}}
+.revamp-site .booking-calendar[data-state=unavailable]{min-height:0;display:flex;flex-direction:column;justify-content:center}
+.revamp-site .booking-fallback{padding:32px 24px 44px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
+.revamp-site .booking-fallback img{width:72px;height:72px}.revamp-site .booking-fallback h4{font-size:24px;line-height:1.2;font-weight:800;letter-spacing:-.035em}.revamp-site .booking-fallback p{font-size:14px;color:var(--ink-2);max-width:35ch}

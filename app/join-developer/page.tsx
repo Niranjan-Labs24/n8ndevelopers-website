@@ -8,6 +8,19 @@ import PromotionBanner from "@/components/blog/PromotionBanner"
 export const metadata: Metadata = {
   title: "Join Our Network | n8n Developers",
   description: "Join our global network of n8n experts and monetize your automation skills. Work on global projects and set your own hours.",
+  keywords: ["n8n developer network", "automation engineering careers", "n8n experts", "workflow automation projects"],
+  robots: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  openGraph: {
+    title: "Join Our Network | n8n Developers",
+    description: "Join our global network of n8n experts and monetize your automation skills. Work on global projects and set your own hours.",
+    url: "/join-developer", type: "website", siteName: "n8n Developers",
+    images: [{ url: "/assets/social/og-image.png", width: 1200, height: 630, alt: "Join the n8n Developers engineering network" }],
+  },
+  twitter: {
+    card: "summary_large_image", title: "Join Our Network | n8n Developers",
+    description: "Join our global network of n8n experts and monetize your automation skills. Work on global projects and set your own hours.",
+    images: ["/assets/social/og-image.png"],
+  },
   alternates: {
     canonical: "/join-developer",
   },

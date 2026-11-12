@@ -1,132 +1,41 @@
-import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import Script from "next/script"
 import localFont from "next/font/local"
-import { Manrope, Space_Grotesk } from "next/font/google"
-import { ThemeProvider } from "@/components/theme-provider"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import "@/app/globals.css"
-import { PromotionPopup } from "@/components/PromotionPopup"
+import { SiteShell } from "@/components/site-shell"
 import ChatbaseScript from "@/components/chatbase"
-import OfferBar from "@/components/OfferBar"
-import NavigationProgress from "@/components/NavigationProgress"
-import GlobalDotAccent from "@/components/GlobalDotAccent"
-import { Toaster } from "@/components/ui/sonner"
-import { Suspense } from "react"
+import "@/app/globals.css"
+import "@/styles/design/site.css"
+import "@/styles/design/pages.css"
+import "@/styles/design/refinements.css"
 
-const gilroy = localFont({
-  src: [
-    {
-      path: "../public/fonts/gilroy/Gilroy-Regular.ttf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/gilroy/Gilroy-Medium.ttf",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/gilroy/Gilroy-SemiBold.ttf",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/gilroy/Gilroy-Bold.ttf",
-      weight: "700",
-      style: "normal",
-    },
-  ],
-  variable: "--font-gilroy",
-  display: "swap",
-})
+const manrope = localFont({ src: "../public/fonts/manrope/Manrope-Variable.ttf", variable: "--font-manrope", display: "swap", weight: "200 800" })
+const mono = localFont({ src: "../public/fonts/jetbrains-mono/JetBrainsMono-Variable.ttf", variable: "--font-jetbrains", display: "swap", weight: "100 800" })
 
-const manrope = Manrope({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-manrope",
-  display: "swap",
-})
+const gilroy = localFont({ src: [
+  { path: "../public/fonts/gilroy/Gilroy-Regular.ttf", weight: "400", style: "normal" },
+  { path: "../public/fonts/gilroy/Gilroy-Medium.ttf", weight: "500", style: "normal" },
+  { path: "../public/fonts/gilroy/Gilroy-SemiBold.ttf", weight: "600", style: "normal" },
+  { path: "../public/fonts/gilroy/Gilroy-Bold.ttf", weight: "700", style: "normal" },
+], variable: "--font-gilroy", display: "swap" })
+const spaceGrotesk = localFont({ src: "../public/fonts/space-grotesk/SpaceGrotesk-Variable.ttf", variable: "--font-space-grotesk", display: "swap" })
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["500"],
-  variable: "--font-space-grotesk",
-  display: "swap",
-})
-
+export const viewport: Viewport = { themeColor: "#fdfcf8" }
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.n8ndevelopers.com"),
-  title: "n8n Developers | Custom Workflow & Automation Solutions",
-  description:
-    "Hire expert n8n developers for workflow automation, integration, and custom solutions. Boost efficiency with tailored n8n services today.",
-  keywords: "n8n Developers, n8n Workflow Automation, Hire n8n Experts",
-  verification: {
-    google: "dvHTOSJR4zdlxAgVgmxbghvshaT34Zee1oA0hg_3Qc0",
-  },
-  alternates: {
-    canonical: "/",
-  },
-  icons: {
-    icon: "/n8n logo.png",
-    shortcut: "/n8n logo.png",
-    apple: "/n8n logo.png",
-  },
+  title: "Forward Deployed n8n Engineers | n8n Developers",
+  description: "Forward deployed n8n engineers who work inside your business, automate repetitive work and stay on to keep every workflow running.",
+  verification: { google: "dvHTOSJR4zdlxAgVgmxbghvshaT34Zee1oA0hg_3Qc0" },
+  icons: { icon: "/assets/logo/favicon.png", apple: "/assets/logo/favicon.png" },
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`antialiased font-sans ${manrope.variable} ${spaceGrotesk.variable} ${gilroy.variable}`}>
-        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-              strategy="lazyOnload"
-            />
-            <Script id="google-analytics" strategy="lazyOnload">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
-              `}
-            </Script>
-          </>
-        )}
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          <Suspense fallback={null}>
-            <NavigationProgress />
-          </Suspense>
-          <PromotionPopup />
-          <Toaster />
-          <GlobalDotAccent />
-          <Header />
-          {/* <OfferBar /> */}
-          <main className="px-0 py-0">
-            {children}
-          </main>
-          <Footer />
-        </ThemeProvider>
-
-        <ChatbaseScript />
-
-        <Script
-          id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid="875d1f20-cdec-45f8-b918-0665e17654b0"
-          type="text/javascript"
-          strategy="lazyOnload"
-        />
-      </body>
-    </html>
-  )
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <html lang="en" suppressHydrationWarning><body className={`antialiased font-sans ${manrope.variable} ${mono.variable} ${gilroy.variable} ${spaceGrotesk.variable}`}>
+    {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS && <>
+      <Script src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} strategy="lazyOnload" />
+      <Script id="google-analytics" strategy="lazyOnload">{`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config',${JSON.stringify(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS)});`}</Script>
+    </>}
+    <SiteShell>{children}</SiteShell>
+    <ChatbaseScript />
+    <Script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="875d1f20-cdec-45f8-b918-0665e17654b0" strategy="lazyOnload" />
+  </body></html>
 }

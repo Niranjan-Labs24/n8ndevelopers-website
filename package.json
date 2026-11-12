@@ -6,9 +6,11 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "check:seo": "node scripts/verify-discovery.mjs"
   },
   "dependencies": {
+    "@calcom/embed-react": "1.5.3",
     "@contentful/rich-text-react-renderer": "^16.1.6",
     "@contentful/rich-text-types": "^17.2.5",
     "@hookform/resolvers": "^3.9.1",

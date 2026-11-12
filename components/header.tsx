@@ -1,164 +1,58 @@
-'use client';
+"use client"
 
-import { Button } from "@/components/ui/button"
-import { Menu } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
+import { useEffect, useRef, useState } from "react"
 import { usePathname } from "next/navigation"
-import type { FC } from "react"
-import {
-  Sheet,
-  SheetTrigger,
-  SheetContent,
-  SheetClose,
-} from "@/components/ui/sheet"
-import { CADLENLY_URL } from "@/app/constants"
 
-const logo = "/logo.webp"
+const industries = [
+  ["healthcare", "Healthcare", "ehr"], ["ecommerce", "E-commerce", "cart"],
+  ["finance", "Finance", "coins"], ["construction", "Construction", "hardhat"],
+  ["real-estate", "Real Estate", "house"], ["legal", "Legal", "scale"], ["saas", "SaaS", "rocket"],
+]
+const links = [["/services", "Services"], ["https://www.n8ndevelopers.com/blogs", "Blogs"], ["/pricing", "Pricing"], ["/customer-stories", "Customer Stories"]]
 
-const CustomMenuIcon = () => (
-  <svg width="60" height="60" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="8" y="16" width="32" height="4" fill="black" rx="2" />
-    <rect x="8" y="28" width="18" height="4" fill="black" rx="2" />
-  </svg>
-)
-
-export const Header: FC = () => {
+export function Header() {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const dropdown = useRef<HTMLDivElement>(null)
+  const dropdownButton = useRef<HTMLButtonElement>(null)
+  const mobileButton = useRef<HTMLButtonElement>(null)
   const pathname = usePathname()
-
-  const isActive = (href: string) =>
-    pathname === href || pathname.startsWith(href + '/')
-
-  const navLinks = [
-    { href: "/pricing", label: "Pricing" },
-    { href: "/blogs", label: "Blog" },
-  ]
-
-  return (
-    <header className="border-b border-gray-100 bg-white sticky top-0 z-50">
-      <div className="w-full flex items-center justify-between px-6 lg:px-[5%] py-[20px] md:py-[32px]">
-        {/* Left: Desktop Logo OR Mobile Logo */}
-        <div className="flex-1 flex items-center">
-          {/* Desktop Logo */}
-          <div className="hidden md:block">
-            <Link href="/">
-              <Image 
-                src={logo}
-                alt="n8n developers logo" 
-                width={140} 
-                height={50}
-                unoptimized
-                priority
-                className="object-contain h-[50px] w-auto" 
-              />
-            </Link>
-          </div>
-
-          {/* Mobile Logo */}
-          <div className="md:hidden">
-            <Link href="/">
-              <Image 
-                src={logo}
-                alt="n8n developers logo" 
-                width={120} 
-                height={40}
-                unoptimized
-                priority
-                className="object-contain h-8 w-auto" 
-              />
-            </Link>
-          </div>
+  useEffect(() => { setMenuOpen(false); setDropdownOpen(false) }, [pathname])
+  useEffect(() => {
+    const click = (event: MouseEvent) => {
+      if (!dropdown.current?.contains(event.target as Node)) setDropdownOpen(false)
+    }
+    const key = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        if (dropdownOpen) { setDropdownOpen(false); dropdownButton.current?.focus() }
+        else if (menuOpen) { setMenuOpen(false); mobileButton.current?.focus() }
+      }
+    }
+    document.addEventListener("click", click)
+    document.addEventListener("keydown", key)
+    return () => { document.removeEventListener("click", click); document.removeEventListener("keydown", key) }
+  }, [dropdownOpen, menuOpen])
+  return <>
+    <a className="skip-link" href="#main-content">Skip to content</a>
+    <div className="annc" role="note"><div className="wrap"><span>n8nDevelopers is now part of <a className="annc-l" href="https://labs24.co" target="_blank" rel="noopener noreferrer">Labs 24</a> - Forward deployed engineering company</span><a href="/about">Learn more →</a></div></div>
+    <nav className="nav" aria-label="Main navigation"><div className="wrap">
+      <a className="logo" href="/" aria-label="n8n Developers home"><img src="/assets/logo/n8n-developers-logo.png" alt="n8nDevelopers" width="150" height="60" /></a>
+      <div className="menu">
+        <a href="/services" aria-current={pathname === "/services" ? "page" : undefined}>Services</a>
+        <div className={`dd${dropdownOpen ? " open" : ""}`} ref={dropdown}>
+          <button ref={dropdownButton} type="button" aria-expanded={dropdownOpen} aria-controls="industry-menu" onClick={() => setDropdownOpen(!dropdownOpen)}>Use Cases <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg></button>
+          <div className="panel" id="industry-menu">{industries.map(([slug, label, icon]) => <a key={slug} href={`/use-cases/${slug}`}><img className="ddi" src={`/assets/icons/n8n-hero/${icon}.svg`} alt="" />{label}</a>)}<a className="all" href="/use-cases">All use cases →</a></div>
         </div>
-
-        {/* Center: Desktop Navigation ONLY */}
-        <div className="hidden md:flex flex-1 justify-center items-center px-8">
-          <nav className="flex items-center gap-10">
-            {navLinks.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className={`text-[18px] font-semibold leading-[20px] tracking-[-0.02em] transition-colors relative pb-1 ${
-                  isActive(href)
-                    ? 'text-black after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#FF7A59] after:rounded-full'
-                    : 'text-gray-700 hover:text-black'
-                }`}
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-
-        {/* Right: Desktop CTA OR Mobile Hamburger */}
-        <div className="flex-1 flex items-center justify-end">
-          {/* Desktop CTA */}
-          <div className="hidden md:block">
-            <Button
-              asChild
-              className="bg-[#FF7442] hover:bg-[#ff6a42] text-white rounded-xl transition-all border-[1px] border-black"
-              style={{
-                width: '253px',
-                height: '60px',
-                padding: '14px 35px',
-                gap: '8px',
-                opacity: 1,
-                fontFamily: 'Manrope',
-                fontWeight: 600,
-                fontSize: '16px',
-                lineHeight: '32px',
-                letterSpacing: '-3%',
-                boxShadow: '2px 3px 0px 0px #000000',
-              }}
-            >
-              <Link href={CADLENLY_URL} target="_blank">
-                Book free automation call
-              </Link>
-            </Button>
-          </div>
-
-          {/* Mobile Hamburger */}
-          <div className="md:hidden">
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button aria-label="Open mobile menu" variant='ghost' size='icon' className="p-0 h-auto w-auto hover:bg-transparent -mr-2 [&_svg]:size-10">
-                  <CustomMenuIcon />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="top" className="flex flex-col p-0 border-none overflow-hidden">
-                <div className="flex-none flex items-center justify-between px-6 py-4 border-b border-gray-50">
-                  <Link href="/">
-                    <Image 
-                      src={logo}
-                      alt="n8n developers logo" 
-                      width={120} 
-                      height={40}
-                      unoptimized
-                      className="object-contain h-8 w-auto" 
-                    />
-                  </Link>
-                </div>
-                
-                <div className="flex-grow flex flex-col gap-3 px-8 py-4 overflow-y-auto">
-                  {navLinks.map(({ href, label }) => (
-                    <SheetClose key={href} asChild>
-                      <Link
-                        href={href}
-                        className={`text-[18px] font-semibold leading-[20px] tracking-[-0.02em] transition-colors ${
-                          isActive(href) ? 'text-black' : 'text-black hover:text-[#FF7A59]'
-                        }`}
-                      >
-                        {label}
-                      </Link>
-                    </SheetClose>
-                  ))}
-                </div>
-
-
-              </SheetContent>
-            </Sheet>
-          </div>
-        </div>
+        {links.slice(1).map(([href, label]) => <a key={href} href={href} aria-current={pathname === href ? "page" : undefined}>{label}</a>)}
       </div>
-    </header>
-  )
+      <div className="acts"><a className="btn btn-s btn-new" href="/partners#apply">Become a partner<span className="new-tag">New</span></a><a className="btn btn-p" href="/#book">Book a call</a></div>
+      <button className="mobile-toggle" ref={mobileButton} type="button" aria-expanded={menuOpen} aria-controls="mobile-navigation" aria-label={menuOpen ? "Close navigation" : "Open navigation"} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <span aria-hidden="true">×</span> : <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" /></svg>}</button>
+    </div>
+    {menuOpen && <div className="mobile-navigation" id="mobile-navigation" onClick={event => { if ((event.target as Element).closest("a")) setMenuOpen(false) }}>
+      {links.map(([href,label]) => <a key={href} href={href}>{label}</a>)}
+      <details><summary>Use cases</summary>{industries.map(([slug,label]) => <a key={slug} href={`/use-cases/${slug}`}>{label}</a>)}<a href="/use-cases">All use cases →</a></details>
+      <a href="/forward-deployed-engineers">Forward deployed engineers</a><a href="/about">About us</a><a href="/contact">Contact</a><a href="/partners#apply">Become a partner ↗</a>
+    </div>}
+    </nav>
+  </>
 }
