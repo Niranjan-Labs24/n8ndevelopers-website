@@ -21,8 +21,10 @@ The existing blog pages and `lib/contentful.ts` are unchanged. Marketing navigat
 
 ## Validation
 
-Run `npm ci`, then `npm run dev -- --hostname 0.0.0.0` from the repository root.
+Deployment uses pnpm. Reproduce its dependency graph with `pnpm install --frozen-lockfile`, then run `pnpm exec tsc --noEmit --incremental false` and `pnpm run build`. For local development, use `pnpm run dev -- --hostname 0.0.0.0`. npm remains supported through `npm ci`.
+
+`react-resizable-panels` is pinned to 3.0.3 in the manifest and both lockfiles. Its wrappers use the v3 `PanelGroup` / `PanelResizeHandle` API; a check against a different npm resolution does not verify the deployment graph.
 
 The marketing routes were checked at desktop and 390px mobile widths, including metadata, internal links, FAQs, navigation, filters, the booking embed integration and fallback, and form validation. Type checking: `npx --no-install tsc --noEmit --incremental false`.
 
-A full production build also loads the existing blog module. The unchanged CMS module requires real `CONTENTFUL_SPACE_ID` and `CONTENTFUL_ACCESS_TOKEN` settings; do not use invented values to bypass this requirement. Those credentials are absent in the review environment. No live form was submitted and nothing was pushed to GitHub.
+A full production build also loads the existing blog module. The unchanged CMS module requires real `CONTENTFUL_SPACE_ID` and `CONTENTFUL_ACCESS_TOKEN` settings; do not use invented values to bypass this requirement. Those credentials are absent in the review environment. No live form was submitted during validation.
